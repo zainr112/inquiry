@@ -1,0 +1,4 @@
+import {sqliteTable,text,integer,primaryKey} from "drizzle-orm/sqlite-core";
+export const applications=sqliteTable("applications",{userId:text("user_id").primaryKey(),email:text("email").notNull(),name:text("name").notNull(),field:text("field").notNull(),goal:text("goal").notNull(),status:text("status").notNull().default("pending"),createdAt:text("created_at").notNull()});
+export const progress=sqliteTable("progress",{userId:text("user_id").notNull(),day:integer("day").notNull(),notes:text("notes").notNull().default(""),done:integer("done").notNull().default(0),feedback:text("feedback").notNull().default(""),updatedAt:text("updated_at").notNull()},t=>[primaryKey({columns:[t.userId,t.day]})]);
+export const settings=sqliteTable("settings",{key:text("key").primaryKey(),value:text("value").notNull()});
